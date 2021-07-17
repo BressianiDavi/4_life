@@ -1,5 +1,5 @@
 <template>
-    <ListProfessionals :professionals="listProfessionals" />
+    <ListProfessionals :professionals="listProfessionals" :indexTotal="listProfessionals.length" />
 </template>
 
 <script>

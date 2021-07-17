@@ -1,56 +1,58 @@
 <template>
     <v-container>
         <tr v-for="(professional, index) of professionals" :key="professional.name">
-            <td>{{ index + 1 }}</td>
-            <v-card :loading="loading" class="mx-auto my-3" max-width="350">
-                <template slot="progress">
-                    <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
-                </template>
-                <div class="text-center">
-                    <v-avatar size="100">
-                        <span class="white--text text-h5"><img :src="professional.imagem"/></span>
-                    </v-avatar>
-                </div>
-
-                <v-card-title>{{ professional.nome }}</v-card-title>
-                <v-card-text>
-                    <v-row align="center" class="mx-0">
-                        <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
-
-                        <div class="grey--text ms-4">
-                            4.5 (413)
-                        </div>
-                    </v-row>
-
-                    <div class="my-4 text-subtitle-1">Localidade: {{ professional.local }}</div>
-
-                    <div>
-                        {{ professional.servicos }}
+            <td class="index">{{ index + 1 }} de {{ indexTotal }}</td>
+            <div class="text-center">
+                <v-card :loading="loading" class="mx-auto my-3" max-width="350">
+                    <template slot="progress">
+                        <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+                    </template>
+                    <div class="text-center">
+                        <v-avatar size="100">
+                            <span class="white--text text-h5"><img :src="professional.imagem"/></span>
+                        </v-avatar>
                     </div>
-                </v-card-text>
 
-                <v-divider class="mx-4"></v-divider>
+                    <v-card-title>{{ professional.nome }}</v-card-title>
+                    <v-card-text>
+                        <v-row align="center" class="mx-0">
+                            <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
 
-                <v-card-title>Tonight's availability</v-card-title>
+                            <div class="grey--text ms-4">
+                                4.5 (413)
+                            </div>
+                        </v-row>
 
-                <v-card-text>
-                    <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
-                        <v-chip>5:30PM</v-chip>
+                        <div class="my-4 text-subtitle-1">Localidade: {{ professional.local }}</div>
 
-                        <v-chip>7:30PM</v-chip>
+                        <div>
+                            {{ professional.servicos }}
+                        </div>
+                    </v-card-text>
 
-                        <v-chip>8:00PM</v-chip>
+                    <v-divider class="mx-4"></v-divider>
 
-                        <v-chip>9:00PM</v-chip>
-                    </v-chip-group>
-                </v-card-text>
+                    <v-card-title>Tonight's availability</v-card-title>
 
-                <v-card-actions>
-                    <v-btn color="deep-purple lighten-2" text @click="reserve">
-                        Reserve
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
+                    <v-card-text>
+                        <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
+                            <v-chip>5:30PM</v-chip>
+
+                            <v-chip>7:30PM</v-chip>
+
+                            <v-chip>8:00PM</v-chip>
+
+                            <v-chip>9:00PM</v-chip>
+                        </v-chip-group>
+                    </v-card-text>
+
+                    <v-card-actions>
+                        <v-btn color="deep-purple lighten-2" text @click="reserve">
+                            Reserve
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </div>
         </tr>
     </v-container>
 </template>
@@ -62,6 +64,10 @@ export default {
     props: {
         professionals: {
             type: Array,
+            required: true,
+        },
+        indexTotal: {
+            type: Number,
             required: true,
         },
     },
@@ -83,5 +89,10 @@ export default {
 <style scoped>
 .v-avatar img {
     width: 25vw;
+}
+
+.index {
+    display: flex;
+    justify-content: flex-end;
 }
 </style>
