@@ -42,17 +42,25 @@
 
                             <v-chip>8:00PM</v-chip>
 
-                            <v-chip>9:00PM</v-chip>
-                        </v-chip-group>
-                    </v-card-text>
+                        <v-chip>9:00PM</v-chip>
+                    </v-chip-group>                 
+                </v-card-text>
 
-                    <v-card-actions>
-                        <v-btn color="deep-purple lighten-2" text @click="reserve">
-                            Reserve
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </div>
+                <v-card-actions>
+                    <v-btn color="deep-purple lighten-2" text @click="reserve">
+                        Reserve
+                    </v-btn>
+                </v-card-actions>
+                   <div class="list">
+                        <ul v-for="(video) of videos" :key="video.id" >
+                            <li>
+                                <a target="_blank" :href="video.site">                                    
+                                        {{video.nome}}                                    
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+            </v-card>
         </tr>
     </v-container>
 </template>
@@ -69,7 +77,11 @@ export default {
         indexTotal: {
             type: Number,
             required: true,
-        },
+        }, 
+        videos: {
+            type: Array,
+            required: true,
+        }
     },
     data: () => ({
         loading: false,
@@ -95,4 +107,24 @@ export default {
     display: flex;
     justify-content: flex-end;
 }
+
+    .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 8px 16px;
+    }   
+
+    .list li {
+        list-style: none;
+        font-size: 16px;
+        
+    }
+
+    .list a {
+        text-decoration: none;
+        color: gray;
+
+    }
 </style>
+
