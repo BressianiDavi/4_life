@@ -1,5 +1,8 @@
 <template>
-    <ListProfessionals :professionals="listProfessionals" />
+    <v-container>
+        <ListProfessionals :videos="listAppVideo" :professionals="listProfessionals" />
+        
+    </v-container>
 </template>
 
 <script>
@@ -14,6 +17,7 @@ export default {
     data() {
         return {
             listProfessionals: [],
+            listAppVideo: [],
         };
     },
     created() {
@@ -21,6 +25,16 @@ export default {
             .then((response) => response.json())
             .then((json) => {
                 this.listProfessionals = json;
+            });
+
+            fetch("https://it3-gdf-default-rtdb.firebaseio.com/online/videoChamada.json")
+            .then((response) => response.json())
+            .then((json) => {
+                this.listAppVideo = json;
+
+                this.listAppVideo.icon = ["mdi-discord","mdi-microsoft-teams", "mdi-video",]
+
+                console.log(this.listAppVideo)
             });
     },
 };

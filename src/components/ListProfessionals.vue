@@ -39,7 +39,7 @@
                         <v-chip>8:00PM</v-chip>
 
                         <v-chip>9:00PM</v-chip>
-                    </v-chip-group>
+                    </v-chip-group>                 
                 </v-card-text>
 
                 <v-card-actions>
@@ -47,6 +47,15 @@
                         Reserve
                     </v-btn>
                 </v-card-actions>
+                   <div class="list">
+                        <ul v-for="(video) of videos" :key="video.id" >
+                            <li>
+                                <a target="_blank" :href="video.site">                                    
+                                        {{video.nome}}                                    
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
             </v-card>
         </tr>
     </v-container>
@@ -61,6 +70,10 @@ export default {
             type: Array,
             required: true,
         },
+        videos: {
+            type: Array,
+            required: true,
+        }
     },
     data: () => ({
         loading: false,
@@ -77,4 +90,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+    .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 8px 16px;
+    }   
+
+    .list li {
+        list-style: none;
+        font-size: 16px;
+        
+    }
+
+    .list a {
+        text-decoration: none;
+        color: gray;
+
+    }
+</style>
+
