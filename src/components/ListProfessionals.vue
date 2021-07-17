@@ -60,7 +60,8 @@
                             </li>
                         </ul>
                     </div>
-            </v-card>
+                </v-card>   
+            </div>
         </tr>
     </v-container>
 </template>
