@@ -2,12 +2,15 @@
     <v-container>
         <tr v-for="(professional, index) of professionals" :key="professional.name">
             <td>{{ index + 1 }}</td>
-            <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+            <v-card :loading="loading" class="mx-auto my-3" max-width="350">
                 <template slot="progress">
                     <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
                 </template>
-
-                <v-img height="250" :src="professional.imagem"></v-img>
+                <div class="text-center">
+                    <v-avatar size="100">
+                        <span class="white--text text-h5"><img :src="professional.imagem"/></span>
+                    </v-avatar>
+                </div>
 
                 <v-card-title>{{ professional.nome }}</v-card-title>
                 <v-card-text>
@@ -77,4 +80,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.v-avatar img {
+    width: 25vw;
+}
+</style>
