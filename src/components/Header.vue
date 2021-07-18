@@ -1,9 +1,18 @@
 <template>
   <v-container>
-    <v-app-bar color="deep-purple" app dark>
+    <v-app-bar color="yellow darken-2" app dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>4Life</v-toolbar-title>
+      <v-toolbar-title >
+        <div class="header">
+            <v-img 
+              max-height="10vh"
+              max-width="10vw"
+              src="https://i.imgur.com/KzPVjKl.png"
+            ></v-img>
+            <span>4Life</span>
+        </div>
+      </v-toolbar-title>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -41,3 +50,19 @@ export default {
   }),
 };
 </script>
+
+
+<style scoped>
+ div .header {
+    display: flex;
+    align-items: center;    
+  }
+
+  div .header span {
+    margin-left: 18px;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  
+</style>
