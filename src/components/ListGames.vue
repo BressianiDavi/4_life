@@ -1,5 +1,5 @@
 <template>
-    <v-container class="container">
+    <v-container>
         <td class="index">{{ current + 1 }} de {{ indexTotal }}</td>
         <div class="text-center">
             <v-card :loading="loading" class="mx-auto my-3" max-width="350">
@@ -7,42 +7,44 @@
                     <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
                 </template>
                 <div class="text-center">
-                    <v-avatar size="100">
-                        <span class="white--text text-h5"><img :src="professionals[current].imagem"/></span>
+                    <v-avatar size="200">
+                        <span class="white--text text-h5">
+                            <img :src="games[current].imagem" />
+                        </span>
                     </v-avatar>
                 </div>
 
-                <v-card-title>{{ professionals[current].nome }}</v-card-title>
+                <v-card-title>
+                    <a class="link" target="_blank" :href="game.site">
+                        {{ games[current].nome }}                        
+                      </a>
+                </v-card-title>
                 <v-card-text>
                     <v-row align="center" class="mx-0">
-                        <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
+                        <v-rating
+                            :value="games[current].avaliacao"
+                            color="amber"
+                            dense
+                            half-increments
+                            readonly
+                            size="14"
+                        ></v-rating>
 
                         <div class="grey--text ms-4">
-                            4.5 (413)
+                            {{ games[current].avaliacao }}
                         </div>
                     </v-row>
 
-                    <div class="my-4 text-subtitle-1 localidade">Localidade: {{ professionals[current].local }}</div>
-                    <div class="servicos my-4 text-subtitle-1">
-                        Serviços: {{ professionals[current].servicos.join(", ").toString() }}
+                    <div class="my-4 text-subtitle-1 text-start mt-5">
+                        Plataformas: {{ games[current].plataformas.join(", ").toString() }}
                     </div>
+
+                    <div class="my-4 text-subtitle-1 text-start ">
+                          <p>Descrição: {{game[current].descricao}}</p>  
+                        </div>
                 </v-card-text>
 
                 <v-divider class="mx-4"></v-divider>
-
-                <v-card-title>Disponibilidade para hoje</v-card-title>
-
-                <v-card-text>
-                    <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
-                        <v-chip>17:30</v-chip>
-
-                        <v-chip>19:30</v-chip>
-
-                        <v-chip>20:00</v-chip>
-
-                        <v-chip>21:00</v-chip>
-                    </v-chip-group>
-                </v-card-text>
 
                 <v-card-actions>
                     <v-btn color="deep-purple lighten-2" text @click="reserve">
@@ -60,16 +62,10 @@
                 </div>
             </v-card>
             <div class="buttons">
-                <v-btn
-                    @click="previousProfessional()"
-                    v-if="current > 0"
-                    class="ma-2 previous"
-                    color="blue lighten-1"
-                    dark
-                >
+                <v-btn @click="previousGame()" v-if="current > 0" class="ma-2 previous" color="blue lighten-1" dark>
                     <v-icon dark left> mdi-arrow-left </v-icon>
                 </v-btn>
-                <v-btn @click="nextProfessional()" v-if="current < 6" class="ma-2 next" color="blue lighten-1" dark>
+                <v-btn @click="nextGame()" v-if="current < 9" class="ma-2 next" color="blue lighten-1" dark>
                     <v-icon dark left> mdi-arrow-right </v-icon>
                 </v-btn>
             </div>
@@ -83,7 +79,8 @@ export default {
 
     props: {
         current: { type: Number, required: true },
-        professionals: {
+
+        games: {
             type: Array,
             required: true,
         },
@@ -100,15 +97,14 @@ export default {
         loading: false,
         selection: 1,
     }),
-
     methods: {
-        nextProfessional() {
-            if (this.current < this.professionals.length) {
+        nextGame() {
+            if (this.current < this.games.length) {
                 this.current++;
             }
         },
 
-        previousProfessional() {
+        previousGame() {
             if (this.current > 0) {
                 this.current = this.current - 1;
             }
@@ -124,59 +120,41 @@ export default {
 </script>
 
 <style scoped>
-.v-avatar img {
-    width: 50vw;
-    border-radius: 50%;
-    border: 3px solid rgba(30, 126, 204, 0.8);
-    margin-top: 24px;
-}
+    .v-avatar img {
+        width: 50vw;      
+    }
 
-.index {
-    display: flex;
-    justify-content: flex-end;
-}
+    .index {
+        display: flex;
+        justify-content: flex-end;
+    }
 
-.list {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 8px 16px;
-}
+    .link {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;      
+    }
 
-.list ul {
-    padding: 0;
-}
+    .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 8px 16px;
+    }   
 
-.list li {
-    list-style: none;
-    font-size: 16px;
-}
+    .list ul {
+      padding: 0;
+    }
 
-.list a {
-    text-decoration: none;
-    color: gray;
-}
-.v-avatar img {
-    width: 25vw;
-}
+    .list li {
+        list-style: none;
+        font-size: 16px;
+        
+    }
 
-.index {
-    display: flex;
-    justify-content: flex-end;
-}
+    .list a {
+        text-decoration: none;
+        color: gray;
 
-.servicos {
-    display: flex;
-    justify-content: flex-start;
-}
-
-.localidade {
-    display: flex;
-    justify-content: flex-start;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-}
+    }
 </style>

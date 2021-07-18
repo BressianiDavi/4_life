@@ -20,3 +20,9 @@ export default {
     }),
 };
 </script>
+
+<style scoped>
+    main {
+        background: #fffafa;
+    }   
+</style>

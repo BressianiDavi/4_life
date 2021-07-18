@@ -1,5 +1,10 @@
 <template>
-    <ListProfessionals :professionals="listProfessionals" :indexTotal="listProfessionals.length" :current="current" />
+    <ListProfessionals
+        :professionals="listProfessionals"
+        :indexTotal="listProfessionals.length"
+        :videos="listAppVideo"
+        :current="current"
+    />
 </template>
 
 <script>
@@ -14,6 +19,7 @@ export default {
     data() {
         return {
             listProfessionals: [],
+            listAppVideo: [],
             current: 0,
         };
     },
@@ -23,8 +29,14 @@ export default {
             .then((json) => {
                 this.listProfessionals = json;
             });
+
+        fetch("https://it3-gdf-default-rtdb.firebaseio.com/online/videoChamada.json")
+            .then((response) => response.json())
+            .then((json) => {
+                this.listAppVideo = json;
+            });
     },
 };
 </script>
 
-<style></style>
+<style scoped></style>
