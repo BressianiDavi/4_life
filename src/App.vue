@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app >
         <Header/>
         <v-main>
             <router-view />
@@ -21,3 +21,7 @@ export default {
     }),
 };
 </script>
+
+<style scoped>
+    
+</style>
