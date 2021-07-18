@@ -15,7 +15,11 @@
                         </v-avatar>
                     </div>
 
-                    <v-card-title>{{ game.nome }}</v-card-title>
+                    <v-card-title>
+                      <a class="link" target="_blank" :href="game.site">
+                        {{ game.nome }}
+                      </a>
+                    </v-card-title>
                     <v-card-text>
                         <v-row align="center" class="mx-0">
                             <v-rating :value="game.avaliacao" color="amber" dense half-increments readonly size="14"></v-rating>
@@ -27,6 +31,10 @@
 
                         <div class="my-4 text-subtitle-1 text-start mt-5">
                             Plataformas:  {{ game.plataformas.join(', ').toString() }}
+                        </div>
+
+                        <div class="my-4 text-subtitle-1 text-start ">
+                          <p>Descrição: {{game.descricao}}</p>  
                         </div>
 
                        
@@ -88,12 +96,18 @@ export default {
 
 <style scoped>
     .v-avatar img {
-        width: 50vw;
+        width: 50vw;      
     }
 
     .index {
         display: flex;
         justify-content: flex-end;
+    }
+
+    .link {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;      
     }
 
     .list {
