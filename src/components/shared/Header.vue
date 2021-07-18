@@ -1,10 +1,15 @@
 <template>
   <v-container class="header-bar">
-    <v-app-bar color="deep-purple" app dark>
+    <v-app-bar color="yellow darken-2" app dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
       <router-link to="/">
-        <v-toolbar-title>4Life</v-toolbar-title>
+        <v-toolbar-title>
+          <div class="header">
+              <v-img max-height="10vh" max-width="10vw" src="https://i.imgur.com/KzPVjKl.png"></v-img>
+              <span>4Life</span>
+          </div>
+        </v-toolbar-title>
       </router-link>
     </v-app-bar>
 
@@ -50,17 +55,28 @@
 
 <script>
 export default {
-  name: "Header",
+    name: "Header",
 
-  data: () => ({
-    drawer: false,
-    group: null,
-  }),
+    data: () => ({
+        drawer: false,
+        group: null,
+    }),
 };
 </script>
 
 <style scoped>
   .header-bar a {
     text-decoration: none;
+  }
+
+  div .header {
+    display: flex;
+    align-items: center;
+  }
+
+div .header span {
+    margin-left: 18px;
+    font-weight: bold;
+    font-size: 24px;
   }
 </style>
