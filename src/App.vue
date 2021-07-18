@@ -23,6 +23,6 @@ export default {
 
 <style scoped>
     main {
-        background: #83bbfa;
+        background: #fffafa;
     }   
 </style>
