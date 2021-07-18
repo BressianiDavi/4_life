@@ -1,26 +1,22 @@
 <template>
-  <v-container>
-      <ListGames 
-        :games="listGames"
-        :indexTotal="listGames.length"
-        :videos="listAppVideos"
-      />
-  </v-container>
+    <v-container>
+        <ListGames :games="listGames" :indexTotal="listGames.length" :videos="listAppVideos" :current="current" />
+    </v-container>
 </template>
 
 <script>
-
-import ListGames from '../components/ListGames.vue'
+import ListGames from "../components/ListGames.vue";
 
 export default {
-  name: 'GamesPage',
-  components: {
+    name: "GamesPage",
+    components: {
         ListGames,
     },
-  data() {
+    data() {
         return {
             listGames: [],
-            listAppVideos: [],         
+            listAppVideos: [],
+            current: 0,
         };
     },
     created() {
@@ -28,14 +24,14 @@ export default {
             .then((response) => response.json())
             .then((json) => {
                 this.listGames = json;
-                console.log('listgames', this.listGames)
-            });  
-            
+                console.log("listgames", this.listGames);
+            });
+
         fetch("https://it3-gdf-default-rtdb.firebaseio.com/online/videoChamada.json")
             .then((response) => response.json())
             .then((json) => {
-                this.listAppVideos = json;                
+                this.listAppVideos = json;
             });
     },
-}
+};
 </script>

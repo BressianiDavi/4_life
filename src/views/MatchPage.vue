@@ -1,11 +1,10 @@
 <template>
-    <v-container class="backgorund">
-        <ListProfessionals
+    <ListProfessionals
         :professionals="listProfessionals"
         :indexTotal="listProfessionals.length"
         :videos="listAppVideo"
+        :current="current"
     />
-    </v-container>
 </template>
 
 <script>
@@ -21,6 +20,7 @@ export default {
         return {
             listProfessionals: [],
             listAppVideo: [],
+            current: 0,
         };
     },
     created() {
@@ -33,13 +33,10 @@ export default {
         fetch("https://it3-gdf-default-rtdb.firebaseio.com/online/videoChamada.json")
             .then((response) => response.json())
             .then((json) => {
-                this.listAppVideo = json;                
+                this.listAppVideo = json;
             });
     },
 };
 </script>
 
-<style scoped>
-   
-</style>
-
+<style scoped></style>
