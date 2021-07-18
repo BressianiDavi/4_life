@@ -7,7 +7,7 @@
              max-width="150vw"
             src="https://i.imgur.com/bgHAgoR.png"
         ></v-img>
-    <p class="text-center text blue--text">A 4Life te conecta com várias pessoas do mundo para que você não se sinta sozinho nessa pandemia.
+    <p class="text-center text blue--text">A 4Life te conecta com várias pessoas do mundo para que você não se sinta sozinho ou entediado nessa pandemia.
        Clicando nos botôes abaixo você pode encontrar jogos para se divertir com os amigos e profissionais para te ajudar fisica e mentalmente.
        Chega de ficar no sofá se lamentando e se conecte com a 4Life!</p>
         <div class="buttons">
