@@ -1,5 +1,5 @@
 <template>
-    <ListProfessionals :professionals="listProfessionals" :indexTotal="listProfessionals.length" />
+    <ListProfessionals :professionals="listProfessionals" :indexTotal="listProfessionals.length" :current="current" />
 </template>
 
 <script>
@@ -14,6 +14,7 @@ export default {
     data() {
         return {
             listProfessionals: [],
+            current: 0,
         };
     },
     created() {
