@@ -46,7 +46,7 @@
 
                 <v-card-actions>
                     <v-btn color="deep-purple lighten-2" text @click="reserve">
-                        Reserve
+                        Reserve:
                     </v-btn>
                 </v-card-actions>
                 <div class="list">
@@ -69,7 +69,7 @@
                 >
                     <v-icon dark left> mdi-arrow-left </v-icon>
                 </v-btn>
-                <v-btn @click="nextProfessional()" v-if="current < 9" class="ma-2 next" color="blue lighten-1" dark>
+                <v-btn @click="nextProfessional()" v-if="current < 6" class="ma-2 next" color="blue lighten-1" dark>
                     <v-icon dark left> mdi-arrow-right </v-icon>
                 </v-btn>
             </div>
