@@ -22,6 +22,9 @@
 </template>
 
 <style scoped>
+  .text1 {
+    background-color: rgb(149, 202, 252);
+  }
 
   .buttons {
     display:flex;
