@@ -1,36 +1,56 @@
 <template>
-    <v-container>
-        <v-app-bar color="yellow darken-2" app dark>
-            <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+  <v-container class="header-bar">
+    <v-app-bar color="yellow darken-2" app dark>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-            <v-toolbar-title>
-                <div class="header">
-                    <v-img max-height="10vh" max-width="10vw" src="https://i.imgur.com/KzPVjKl.png"></v-img>
-                    <span>4Life</span>
-                </div>
-            </v-toolbar-title>
-        </v-app-bar>
+      <router-link to="/">
+        <v-toolbar-title>
+          <div class="header">
+              <v-img max-height="10vh" max-width="10vw" src="https://i.imgur.com/KzPVjKl.png"></v-img>
+              <span>4Life</span>
+          </div>
+        </v-toolbar-title>
+      </router-link>
+    </v-app-bar>
 
-        <v-navigation-drawer v-model="drawer" absolute temporary>
-            <v-list nav dense>
-                <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>mdi-home</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-title>Home</v-list-item-title>
-                    </v-list-item>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
 
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>mdi-account</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-title>Profissio</v-list-item-title>
-                    </v-list-item>
-                </v-list-item-group>
-            </v-list>
-        </v-navigation-drawer>
-    </v-container>
+          <router-link to="/">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-home</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+          </router-link>
+
+          <router-link to="/matchpage">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-account</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Profissionais</v-list-item-title>
+              </v-list-item>
+          </router-link>
+
+          <router-link to="/gamespage">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-gamepad-variant-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Jogos</v-list-item-title>
+              </v-list-item>
+          </router-link>
+         
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+  </v-container>
 </template>
 
 <script>
@@ -45,14 +65,18 @@ export default {
 </script>
 
 <style scoped>
-div .header {
+  .header-bar a {
+    text-decoration: none;
+  }
+
+  div .header {
     display: flex;
     align-items: center;
-}
+  }
 
 div .header span {
     margin-left: 18px;
     font-weight: bold;
     font-size: 24px;
-}
+  }
 </style>

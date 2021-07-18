@@ -29,6 +29,15 @@
     align-items: center;
   }
 </style>
+<script>
 
+export default {
+    name: "HomePage",
+
+    components: {
+        
+    },
+};
+</script>
 
 

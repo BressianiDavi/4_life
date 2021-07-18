@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <tr v-for="(professional, index) of professionals" :key="professional.name">
+        <tr v-for="(game, index) of games" :key="game.id">
             <td class="index">{{ index + 1 }} de {{ indexTotal }}</td>
             <div class="text-center">
                 <v-card :loading="loading" class="mx-auto my-3" max-width="350">
@@ -8,45 +8,31 @@
                         <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
                     </template>
                     <div class="text-center">
-                        <v-avatar  size="200">
+                        <v-avatar size="200">
                             <span class="white--text text-h5">
-                                <img :src="professional.imagem"/>
+                              <img :src="game.imagem"/>
                             </span>
                         </v-avatar>
                     </div>
 
-                    <v-card-title>{{ professional.nome }}</v-card-title>
+                    <v-card-title>{{ game.nome }}</v-card-title>
                     <v-card-text>
                         <v-row align="center" class="mx-0">
-                            <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
+                            <v-rating :value="game.avaliacao" color="amber" dense half-increments readonly size="14"></v-rating>
 
                             <div class="grey--text ms-4">
-                                4.5 (413)
+                                {{game.avaliacao}} 
                             </div>
                         </v-row>
 
-                        <div class="my-4 text-subtitle-1">Localidade: {{ professional.local }}</div>
-
-                        <div>
-                            {{ professional.servicos }}
+                        <div class="my-4 text-subtitle-1 text-start mt-5">
+                            Plataformas:  {{ game.plataformas.join(', ').toString() }}
                         </div>
+
+                       
                     </v-card-text>
 
-                    <v-divider class="mx-4"></v-divider>
-
-                    <v-card-title>Tonight's availability</v-card-title>
-
-                    <v-card-text>
-                        <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
-                            <v-chip>5:30PM</v-chip>
-
-                            <v-chip>7:30PM</v-chip>
-
-                            <v-chip>8:00PM</v-chip>
-
-                        <v-chip>9:00PM</v-chip>
-                    </v-chip-group>                 
-                </v-card-text>
+                    <v-divider class="mx-4"></v-divider>                    
 
                 <v-card-actions>
                     <v-btn color="deep-purple lighten-2" text @click="reserve">
@@ -54,7 +40,7 @@
                     </v-btn>
                 </v-card-actions>
                    <div class="list">
-                        <ul v-for="(video) of videos" :key="video.id" >
+                        <ul v-for="video of videos" :key="video.id" >
                             <li>
                                 <a target="_blank" :href="video.site">                                    
                                         {{video.nome}}                                    
@@ -73,7 +59,7 @@ export default {
     name: "ListProfessionals",
 
     props: {
-        professionals: {
+        games: {
             type: Array,
             required: true,
         },
@@ -84,13 +70,12 @@ export default {
         videos: {
             type: Array,
             required: true,
-        }
+        }       
     },
     data: () => ({
         loading: false,
         selection: 1,
     }),
-
     methods: {
         reserve() {
             this.loading = true;
@@ -101,12 +86,9 @@ export default {
 };
 </script>
 
-<style scoped>   
+<style scoped>
     .v-avatar img {
         width: 50vw;
-        border-radius: 50%;
-        border: 3px solid rgba(30, 126, 204,0.8);
-        margin-top: 24px
     }
 
     .index {
@@ -119,8 +101,8 @@ export default {
         justify-content: space-between;
         align-items: flex-start;
         padding: 8px 16px;
-    } 
-    
+    }   
+
     .list ul {
       padding: 0;
     }
